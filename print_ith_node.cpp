@@ -1,0 +1,116 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cstring>
+#include <ctype.h>
+using namespace std;
+
+class Node{
+    private:
+    int data;
+    public:
+    Node *next;
+    Node(int a){
+        data=a;
+        next=NULL;
+    }
+    int get_data(Node *the_element){
+        return the_element->data;
+    }
+
+    Node *insert_at_head(Node *head,int data){
+        Node *newnode= new Node(data);
+        newnode->next=head;
+        return newnode;        
+    }
+
+    void print_it(Node *head){
+        Node *temp=head;
+        while (temp!=NULL){
+            std::cout<< temp->data << " -> ";
+            temp= temp->next;
+        }
+        std::cout<< "NULL" <<std::endl;
+    }
+
+    int give_len(Node *head){
+        int count{0};
+        while (head!=NULL)
+        {
+            count++;
+            head=head->next;
+        }
+        return count;
+    }
+
+    Node *print_ith(Node *head, int i){
+        int index{0};
+
+        if (i<index){
+            std::cout<<"invalid index" <<std::endl;
+        }
+        
+
+        Node *temp=head;
+        while (temp)
+        {
+            if(index==i){
+                return temp;
+            }
+             temp=temp->next;
+            index++;
+        }
+        std::cout<< "your index is invalid " <<std::endl;
+        return head;
+        
+
+    }
+        
+};
+
+
+int main(){
+
+    int x{0};
+    std::cin>>x ;
+
+    Node *n1= new Node(x);
+    Node *head=n1;
+    // n1->print_it(head);
+    std::cout<< "------------------------" <<std::endl;
+    std::cin>>x ;
+    while (x!=-1)
+    {
+        
+        head=n1->insert_at_head(head,x);
+        // n1->print_it(head);
+        // std::cout<< "------------------------" <<std::endl;
+        std::cin>>x ;
+    }
+
+
+    n1->print_it(head);
+    int len{n1->give_len(head)};
+    std::cout<< "the length is : " << len <<std::endl;
+
+    std::cout<< "enter the elem index you want: " <<std::endl;
+    int elem_ind{0};
+    std::cin>>elem_ind ;
+    // if (elem_ind>len)
+    // {
+    //     std::cout<< "your index is invalid " <<std::endl;
+    // }
+    // else{
+        Node *the_elem= n1->print_ith(head,elem_ind);
+        std::cout<<"the req element is : "<< the_elem->get_data(the_elem) <<std::endl;
+     
+    // }
+    
+ 
+    return 0;
+}
+
+
+
+
+
