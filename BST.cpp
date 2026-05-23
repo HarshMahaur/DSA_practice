@@ -29,7 +29,7 @@ class BST{
     queue<BTNode<int>*> q;
     q.push(root);
     while(!q.empty()){
-        BTNode<T>* f= q.front();
+        BSTreeNode<T>* f= q.front();
         q.pop();
         std::cout<< f->data <<std::endl;
         if(f->left){ q.push(f->left);}
@@ -38,7 +38,7 @@ class BST{
     } 
 
     bool hasData(BTNode<int>*node , int data){
-        if (node===NULL){
+        if (node==NULL){
             return false;
         }
         if (node->data== data){
