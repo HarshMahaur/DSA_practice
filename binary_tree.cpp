@@ -74,7 +74,7 @@ BTNode<T>* TakeInputLevelWise(){ // this code too is soly done by me first
     while (!q.empty()){
         BTNode<T>* f= q.front();
         q.pop();
-        std::cout<< "enter the left child of "<<f->data <<std::endl;
+        std::cout<< "enter the left child of"<<f->data <<std::endl;
         T chdatL;
         std::cin>>chdatL ;
         BTNode<T>* leftch= new BTNode<T>(chdatL);
