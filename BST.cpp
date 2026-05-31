@@ -68,6 +68,70 @@ class BST{
         }
         return root;
     }
+    //========================================
+    //convert BST to sorted Linked list
+    void printRight(BSTreeNode<int>* head) {
+        if (head == nullptr) {
+            return;
+        }
+
+        std::cout << head->data << " ";
+        printRight(head->right);
+    }
+
+
+
+    std::pair<BSTreeNode<int>*, BSTreeNode<int>*> converter(BSTreeNode<int>* head){
+        if (head== NULL){
+            return {nullptr,nullptr};
+        }
+        if (head->left==NULL && head->right==NULL){
+            return {head,head};
+        }
+        else if(head->left!=NULL){
+            pair<BSTreeNode<int>*, BSTreeNode<int>*> lefter ;
+            lefter = converter(head->left);
+            if(head->right == NULL){
+                
+                lefter.second->right= head;
+                lefter.second->left= NULL;
+                head->left = NULL;
+
+                lefter.second = head;
+                head->left = NULL;
+                return lefter;
+
+            }
+            pair<BSTreeNode<int>*, BSTreeNode<int>*> righter ;
+            righter = converter(head->right);
+            lefter.second->right= head;
+            lefter.second->left = NULL;
+            head->right= righter.first;
+            head->left = NULL;
+            return {lefter.first, righter.second};
+
+
+        }
+        else{
+            pair<BSTreeNode<int>*, BSTreeNode<int>*> righter ;
+            righter = converter(head->right);
+            head->right = righter.first;
+            righter.first= head;
+            head->left = NULL;
+            return righter;
+
+        }
+
+
+    }
+    //========================================
+
+
+
+    //=======================================================
+    //this code of deletion was soly done by me
+    
+
     BSTreeNode<int>* get_right_min(BSTreeNode<int>* root){
         if (root->left == nullptr){
             return root;
@@ -89,14 +153,7 @@ class BST{
                 }
                 BSTreeNode<int>* temp = get_right_min(root->right);
                 root->data= temp->data; 
-                std::cout<< temp->data <<std::endl;
                 root->right=delete_data(root->right,temp->data);
-                
-                
-
-
-
-
 
             }else if (root->left){
                 if(!root->right){
@@ -119,6 +176,7 @@ class BST{
         }
         return root;
     }
+    //================================================================ 
     public:
 
     BST(){
@@ -139,6 +197,13 @@ class BST{
     void  delete_it(int data){
         root= delete_data(root,data);
     }
+    BSTreeNode<int>* toLinkedList() {
+        return converter(root).first;
+    }
+    void printLL(BSTreeNode<int>* root){
+        printRight(root);
+
+    }
 };
 int main(){
     BST b;
@@ -154,8 +219,10 @@ int main(){
 
 
 
-    // b.print();
     b.delete_it(67);
+    b.print();
+    BSTreeNode<int>* head = b.toLinkedList(); 
+    b.printLL(head);
     b.print();
 
 
