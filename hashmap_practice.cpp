@@ -25,11 +25,92 @@ void printVec(vector<int> vec){
         cout<< c << " ";
     }
 }
+template <typename T>
+class MapNode{
+public:
+    string key;
+    T val;
+    MapNode* next;
+    MapNode(string key; T val){
+        this->key = key;
+        this->val = val;
+        next = NULL;
 
+    }
+    ~MapNode(){
+        delete next;
+    }
+
+}
+template <typename V>
+class mymap{
+private:
+    MapNode<V>** bucketlist;
+    int count;
+    int numBucket;
+    int bucketIndexer(string key){
+        int bucketIndex{0};
+        int base{1};
+        int p {37};
+        for(int i =key.size()-1; i>=0;i++){
+
+            bucketIndex+= key[i] * base;
+            base*=p;
+            bucketIndex%=numBucket
+            base%=numBucket
+
+        }
+        return bucketIndex%numBucket;
+
+    }
+public: 
+     mymap(){
+        count =0;
+        numBucket=5;
+        bucketlist = new MapNode<V>*[numBucket];
+        for(int i=0;i<numBucket;i++){
+            bucketlist[i]=NULL;
+        }
+
+        
+     }
+     ~mymap(){
+        for(int i=0;i<numBucket;i++){
+            delete bucketlist[i];
+        }
+        delete []bucketlist;
+     }
+     int size(){
+        return count;
+     }
+     V hetValue(string val){
+
+     }
+     void insert(String key, V val){
+        int theIndex= bucketIndexer(key);
+        MapNode<V>* head = bucketlist(theIndex);
+        while(head!=NULL){
+            if(head->key==key){
+                head->val= val;
+                return 
+            }
+            head= head->next;
+        }
+        MapNode<V>* newNode= new MapNode(key,val);
+        newNode->next=bucketlist[theIndex]; //newnode,s next points to old haed;
+        bucketlist[theIndex]= newNode; // new node become new head;
+        count++;
+     }
+     
+     V remove(string key){
+
+     }
+
+}
 
 int main(){
-    int arr[10]={1,5,2,1,5,7,5,8,4,5};
-    vector<int> vec=removeDupe(arr,10);
+    // int arr[10]={1,5,2,1,5,7,5,8,4,5};
+    // vector<int> vec=removeDupe(arr,10);
     // printVec(vec);
 
     unordered_map<string, int> mymap;
