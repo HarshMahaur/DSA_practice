@@ -17,7 +17,7 @@ class PriorityQ{
         }
         return pq[0];
     }
-    void removeMin(){
+    int removeMin(){
 // this is my implimentation of code not by the sir- will varify later if it works;
         // int n = pq.size();
         // if(n==0){
@@ -40,6 +40,38 @@ class PriorityQ{
 
 
         // }
+
+
+
+
+//code by the sir;
+        if(isEmpty){
+            return 0;
+        }
+        int ans = pq[0];
+        swap(pq[0];pq[pq.size()-1]);
+        pq.pop_back();
+        //cbt - yes; heap - no yet;
+        //down heaapify
+
+        int pI= 0;
+        while(true){
+            int lci= 2*i+1;
+            int rci= 2*i+2;
+            int miniI= pI;
+            if(pq[lci]<pq[pI]){
+                miniI=lci;
+            }
+            if(pq[rci]<pq[pI]){
+                miniI=rci;
+            }
+            swap(pq[pI],pq[miniI]);
+            pi=miniI;
+
+        }
+
+
+        return ans;
         
     }
     void insert(int val){
