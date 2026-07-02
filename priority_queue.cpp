@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 class PriorityQ{
+public:
     vector<int> pq;
     PriorityQ(){
 
@@ -12,7 +13,7 @@ class PriorityQ{
         return pq.size();
     }
     int getMin(){
-        if(isEmpty){
+        if(isEmpty()){
             return 0; // pq is zero
         }
         return pq[0];
@@ -45,28 +46,31 @@ class PriorityQ{
 
 
 //code by the sir;
-        if(isEmpty){
+        if(isEmpty()){
             return 0;
         }
         int ans = pq[0];
-        swap(pq[0];pq[pq.size()-1]);
+        swap(pq[0],pq[pq.size()-1]);
         pq.pop_back();
         //cbt - yes; heap - no yet;
         //down heaapify
 
         int pI= 0;
         while(true){
-            int lci= 2*i+1;
-            int rci= 2*i+2;
+            int lci= 2*pI+1;
+            int rci= 2*pI+2;
             int miniI= pI;
-            if(pq[lci]<pq[pI]){
+            if(lci<pq.size() && pq[lci]<pq[pI]){
                 miniI=lci;
             }
-            if(pq[rci]<pq[pI]){
+            if(rci<pq.size() && pq[rci]<pq[pI]){
                 miniI=rci;
             }
+            if(pI==miniI){
+                break;
+            }
             swap(pq[pI],pq[miniI]);
-            pi=miniI;
+            pI=miniI;
 
         }
 
@@ -111,6 +115,20 @@ class PriorityQ{
 
 
 int main(){
+    PriorityQ q;
+    q.insert(100);
+    q.insert(10);
+    q.insert(15);
+    q.insert(4);
+    q.insert(17);
+    q.insert(21);
+    q.insert(67);
+    std::cout<< q.getSize() <<std::endl;
+    std::cout<< q.getMin() <<std::endl;
+
+    while(!q.isEmpty()){
+        std::cout<< q.removeMin() <<" ";
+    }
     
 
 
