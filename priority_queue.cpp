@@ -19,67 +19,68 @@ public:
         return pq[0];
     }
     int removeMin(){
-// this is my implimentation of code not by the sir- will varify later if it works;
-        // int n = pq.size();
-        // if(n==0){
-        //     return;
-        // }
-        // pq[0]= pq[n-1];
-        // pq.pop_back();
-        // n= pq.size();
-        // int i{0};
-        // while((2*i+1<n && pq[i]>pq[2*i+1]) || (2*i+2<n && pq[i]>pq[2*i+2])){
+// this is my implimentation of code not by the sir- has varified and is totally working;
+        int n = pq.size();
+        if(n==0){
+            return 0;
+        }
+        int ans = pq[0];
+        pq[0]= pq[n-1];
+        pq.pop_back();
+        n= pq.size();
+        int i{0};
+        while((2*i+1<n && pq[i]>pq[2*i+1]) || (2*i+2<n && pq[i]>pq[2*i+2])){
 
-        //     if(2*i+2<n && pq[2*i+1]>pq[2*i+2]){
-        //         swap(pq[i], pq[2*i+2]);
-        //         i=2*i+2;
-        //     }
-        //     else{
-        //         swap(pq[i], pq[2*i+1]);
-        //         i=2*i+1;
-        //     }
+            if(2*i+2<n && pq[2*i+1]>pq[2*i+2]){
+                swap(pq[i], pq[2*i+2]);
+                i=2*i+2;
+            }
+            else{
+                swap(pq[i], pq[2*i+1]);
+                i=2*i+1;
+            }
 
 
-        // }
+        }
 
 
 
 
 //code by the sir;
-        if(isEmpty()){
-            return 0;
-        }
-        int ans = pq[0];
-        swap(pq[0],pq[pq.size()-1]);
-        pq.pop_back();
-        //cbt - yes; heap - no yet;
-        //down heaapify
+        // if(isEmpty()){
+        //     return 0;
+        // }
+        // int ans = pq[0];
+        // swap(pq[0],pq[pq.size()-1]);
+        // pq.pop_back();
+        //                     //cbt - yes; heap - no yet;
+        //                     //down heaapify
 
-        int pI= 0;
-        while(true){
-            int lci= 2*pI+1;
-            int rci= 2*pI+2;
-            int miniI= pI;
-            if(lci<pq.size() && pq[lci]<pq[pI]){
-                miniI=lci;
-            }
-            if(rci<pq.size() && pq[rci]<pq[pI]){
-                miniI=rci;
-            }
-            if(pI==miniI){
-                break;
-            }
-            swap(pq[pI],pq[miniI]);
-            pI=miniI;
+        // int pI= 0;
+        // while(true){
+        //     int lci= 2*pI+1;
+        //     int rci= 2*pI+2;
+        //     int miniI= pI;
+        //     if(lci<pq.size() && pq[lci]<pq[pI]){
+        //         miniI=lci;
+        //     }
+        //     if(rci<pq.size() && pq[rci]<pq[pI]){
+        //         miniI=rci;
+        //     }
+        //     if(pI==miniI){
+        //         break;
+        //     }
+        //     swap(pq[pI],pq[miniI]);
+        //     pI=miniI;
 
-        }
+        // }
 
 
         return ans;
         
     }
     void insert(int val){
-        // this insert function code is mine not sir; needed to check if works
+        // this insert function code is mine not sir; it works yeah!!!
         pq.push_back(val);
         int n= pq.size();
 
