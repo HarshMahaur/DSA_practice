@@ -1,7 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// memorization solution
+// Bottom Up dp; code with me.
+
+int minStepto1BU(int n){
+    int *dp= new int[n+1];
+    dp[0]=0;
+    dp[1]=0;
+    for(int i =2;i<n+1;i++){
+
+        int x,y,z;
+        x=y=z=INT_MAX;
+        x=dp[i-1];
+        if(i%2==0){
+            y=dp[i/2];
+        }
+        if(i%3==0){
+            y=dp[i/3];
+        }
+        int output= min({x,y,z})+1;
+        dp[i]=output;
+    }
+    int final = dp[n];
+    delete []dp;
+    
+
+    return final;
+    
+}
+
+
+
+
+
+// memorization solution (top down approach)
 int helper(int n,int *ans){
     if(n==1){
         return 0;
@@ -57,6 +89,7 @@ int minStepTo1(int n){
 
 int main(){
     // std::cout<< minStepTo1(1000) <<std::endl;
-    std::cout<< minStepto1Mem(1000) <<std::endl;
+    // std::cout<< minStepto1Mem(1000) <<std::endl;
+    std::cout<< minStepto1BU(999) <<std::endl;
     return 0;
 }
