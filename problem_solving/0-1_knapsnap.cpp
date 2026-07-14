@@ -80,7 +80,7 @@ int main() {
     return 0;
 }
 
-//output
+//test cases 
 // 5
 // 1 2 3 4 5
 // 1 2 5 6 7
