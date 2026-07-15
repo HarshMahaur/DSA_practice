@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 //my first thaught to approach; kinda sliding window;
+// generalized version of the leetcode 70
 int climbingStairsWithK(int n , int k){
     if(k==0 || k>n ){
         std::cout<< "invalid input" <<std::endl;

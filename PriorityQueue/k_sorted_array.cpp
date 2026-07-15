@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//code by me
+//code with me
 
 void kSortedArray(int *input, int k, int n){
     priority_queue<int> pq;

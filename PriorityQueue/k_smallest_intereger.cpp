@@ -21,14 +21,14 @@ void kSmallestELem(int *a,int k, int n){
 
 
     //approach 2
-    // while(i<n){
-    //     pq.push(a[i]);
-    //     if(pq.size()>k){
-    //         pq.pop();
-    //     }
-    //     i++;
+    while(i<n){
+        pq.push(a[i]);
+        if(pq.size()>k){
+            pq.pop();
+        }
+        i++;
 
-    // }
+    }
 
 
     // now to answer the elem;
