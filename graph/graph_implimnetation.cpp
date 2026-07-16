@@ -5,15 +5,36 @@ void print(vector<vector<int>> matrix,vector<bool>& visited,int sv){
     
     std::cout << sv<<std::endl;
     visited[sv]=true;
-
+    
     int n = matrix.size();
     for(int i =0;i<n;i++){
         if(matrix[sv][i]==1 && visited[i]==false){
             print(matrix,visited,i);
         }
-
+        
     }
 }
+
+// mine code attempt
+void printBFS(vector<vector<int>> matrix,vector<bool>& visited,queue<int> q,int sv){
+    int n = matrix.size();
+    q.push(sv);
+    visited[sv]=true;
+    while(!q.empty()){
+        sv= q.front();
+        std::cout<< sv <<std::endl;
+        q.pop();
+        
+        for(int i =0;i<n;i++){
+            if(matrix[sv][i]==1 && visited[i]==false){
+                visited[i]=true;
+                q.push(i);
+            }
+        }
+    }
+
+}
+
 
 
 int main(){
@@ -29,7 +50,9 @@ int main(){
     }
 
     vector<bool> visited(n,false);
-    print(grap,visited,0);
+    // print(grap,visited,0);
+    queue<int> que;
+    printBFS(grap,visited,que,0);
 
 
 
@@ -48,5 +71,17 @@ test input -
 3 4
 2 3
 2 6
+
+input case 2- 
+7
+8
+0 1
+0 2
+1 3
+1 4
+2 6
+3 5
+4 5
+6 5
 
 */
