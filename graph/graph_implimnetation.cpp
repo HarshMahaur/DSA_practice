@@ -1,6 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void print(vector<vector<int>> matrix,vector<bool> visited,int sv){
+    std::cout << sv<<std::endl;
+    visited[sv]==true;
+
+    int n = matrix.size();
+    for(int i =0;i<n;i++){
+        if(matrix[sv][i]==1 && visited[i]==false){
+            print(matrix,visited,i);
+        }
+
+    }
+}
+
 
 int main(){
     int n,e;
@@ -13,6 +26,10 @@ int main(){
         grap[sn][en]=1;
         grap[sn][en]=1;
     }
+
+    vector<bool> visited(n,false);
+    print(grap,visited,0);
+
 
 
 
