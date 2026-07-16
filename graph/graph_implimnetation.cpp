@@ -1,9 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-void print(vector<vector<int>> matrix,vector<bool> visited,int sv){
+// this guntion kinda useless- hashmap for visited would make more sence as visted array suppose that the graph valud are under the n and no repeated values.
+void print(vector<vector<int>> matrix,vector<bool>& visited,int sv){
+    
     std::cout << sv<<std::endl;
-    visited[sv]==true;
+    visited[sv]=true;
 
     int n = matrix.size();
     for(int i =0;i<n;i++){
@@ -36,3 +37,16 @@ int main(){
 
     return 0;
 }
+/*
+test input - 
+7
+7
+0 1
+0 2
+1 5
+5 4
+3 4
+2 3
+2 6
+
+*/
