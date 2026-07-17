@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 // this guntion kinda useless- hashmap for visited would make more sence as visted array suppose that the graph valud are under the n and no repeated values.
-void print(vector<vector<int>> matrix,vector<bool>& visited,int sv){
+void printDFS(vector<vector<int>> matrix,vector<bool>& visited,int sv){
     
     std::cout << sv<<std::endl;
     visited[sv]=true;
@@ -9,7 +9,7 @@ void print(vector<vector<int>> matrix,vector<bool>& visited,int sv){
     int n = matrix.size();
     for(int i =0;i<n;i++){
         if(matrix[sv][i]==1 && visited[i]==false){
-            print(matrix,visited,i);
+            printDFS(matrix,visited,i);
         }
         
     }
@@ -32,12 +32,23 @@ void printBFS(vector<vector<int>> matrix,vector<bool>& visited,queue<int> q,int 
             }
         }
     }
+    
+}
+void DFS(vector<vector<int>> matrix){
+    int n= matrix.size();
+    vector<bool> visited(n,false);
+    for(int i =0;i<n;i++){
+        if(!visited[i]){
+            printDFS(matrix,visited,i);
 
+        }
+    }
 }
 
 
 
 int main(){
+    // adjecentry matrix implimentation; 
     int n,e;
     std::cin>>n>>e ;
     vector<vector<int>> grap(n,vector<int>(n,0));
@@ -49,10 +60,10 @@ int main(){
         grap[sn][en]=1;
     }
 
-    vector<bool> visited(n,false);
-    // print(grap,visited,0);
+    DFS(grap);
     queue<int> que;
-    printBFS(grap,visited,que,0);
+    std::cout<< "BFS output : " <<std::endl;
+    // printBFS(grap,visited,que,0);
 
 
 
@@ -83,5 +94,19 @@ input case 2-
 3 5
 4 5
 6 5
+
+
+
+disconnected graph case;
+input 1 -
+7
+7
+0 1
+1 6
+1 3
+6 3
+2 4
+2 5
+4 5
 
 */
