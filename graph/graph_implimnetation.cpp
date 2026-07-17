@@ -37,24 +37,32 @@ void printBFS(vector<vector<int>> matrix,vector<bool>& visited,queue<int> q,int 
 void DFS(vector<vector<int>> matrix){
     int n= matrix.size();
     vector<bool> visited(n,false);
+    int components{0};
     for(int i =0;i<n;i++){
         if(!visited[i]){
             printDFS(matrix,visited,i);
-
+            components++;
+            
         }
     }
+    std::cout<< "no of components by BFS : " << components<<std::endl;
 }
 
 void BFS(vector<vector<int>> matrix){
     int n= matrix.size();
     vector<bool> visited(n,false);
     queue<int> que;
+    int components{0};
     for(int i =0;i<n;i++){
         if(!visited[i]){
             printBFS(matrix,visited,que,i);
+            components++;
+
     
         }
+
     }
+    std::cout<< "no of components by BFS : " << components<<std::endl;
     
 }
 
@@ -73,6 +81,7 @@ int main(){
         grap[sn][en]=1;
     }
 
+    std::cout<< "DFS output : " <<std::endl;
     DFS(grap);
     std::cout<< "BFS output : " <<std::endl;
     BFS(grap);
@@ -121,4 +130,21 @@ input 1 -
 2 5
 4 5
 
+input 2-
+11
+6
+0 1
+3 4
+4 5
+2 6
+6 7
+8 9
+
+input 3 - 
+7
+4
+0 1
+0 4
+1 4
+2 5
 */
