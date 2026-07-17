@@ -45,6 +45,19 @@ void DFS(vector<vector<int>> matrix){
     }
 }
 
+void BFS(vector<vector<int>> matrix){
+    int n= matrix.size();
+    vector<bool> visited(n,false);
+    queue<int> que;
+    for(int i =0;i<n;i++){
+        if(!visited[i]){
+            printBFS(matrix,visited,que,i);
+    
+        }
+    }
+    
+}
+
 
 
 int main(){
@@ -61,9 +74,8 @@ int main(){
     }
 
     DFS(grap);
-    queue<int> que;
     std::cout<< "BFS output : " <<std::endl;
-    // printBFS(grap,visited,que,0);
+    BFS(grap);
 
 
 
