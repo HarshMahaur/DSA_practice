@@ -69,7 +69,7 @@ void BFS(vector<vector<int>> matrix){
 
 
 int main(){
-    // adjecentry matrix implimentation; 
+    // adjecentry matrix implimentation by me ; 
     int n,e;
     std::cin>>n>>e ;
     vector<vector<int>> grap(n,vector<int>(n,0));
