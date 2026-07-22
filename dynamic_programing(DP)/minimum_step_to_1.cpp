@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Bottom Up dp; code with me.
-
+// Bottom Up dp; code with me......
 int minStepto1BU(int n){
     int *dp= new int[n+1];
     dp[0]=0;
