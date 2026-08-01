@@ -15,7 +15,7 @@ int minStepto1BU(int n){
             y=dp[i/2];
         }
         if(i%3==0){
-            y=dp[i/3];
+            z=dp[i/3];
         }
         int output= min({x,y,z})+1;
         dp[i]=output;
