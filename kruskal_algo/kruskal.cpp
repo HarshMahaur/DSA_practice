@@ -85,6 +85,29 @@ void Union(vector<int>& parent, int i,int j){
 
 vector<pair<int,int>> MST_Kruskal(vector<vector<int>> grap){
     int n = grap.size();
+    int m = grap[0].size();
+    vector<int> parent(n,-1);
+    // unordered_set<int> visited;
+
+    // to make the indivisual set;
+    for(int i = 0;i<n;i++){
+        for(int j=0;j<m;j++){
+            if(grap[i][j]==1){
+                // if(!visited.count(i)){
+                //     visited.insert(i);
+                //     makeSet(i);
+                // }
+                if(parent[i]==-1){
+                    makeSet(parent,i);
+                }
+                if(parent[j]==-1){
+                    makeSet(parent,j);
+                }
+            }
+        }
+    }
+
+    //
     
 
 
@@ -102,16 +125,21 @@ int main(){
     for(int i=0;i<e;i++){
         int sn,en;
         std::cin>>sn>>en;
+        // now will add weight; later
+        // std::cin>>weight ;
+        // grap[sn][en]=weight;
+        // grap[sn][en]=weight;
         grap[sn][en]=1;
         grap[sn][en]=1;
+
     }
 
     std::cout<< "DFS output : " <<std::endl;
     DFS(grap);
 
     
-    std::cout<< "BFS output : " <<std::endl;
-    BFS(grap);
+    // std::cout<< "BFS output : " <<std::endl;
+    // BFS(grap);
 
 
 
