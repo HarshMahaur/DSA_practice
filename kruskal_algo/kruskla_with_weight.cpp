@@ -3,7 +3,7 @@ using namespace std;
 
 
 // mine code attempt to kruskal
-// and this shi actually worked.
+// and this shi the weighted shi also actually worked.
 
 void makeSet(vector<int>& parent, int i){
     parent[i]=i;
@@ -26,48 +26,50 @@ vector<pair<int,int>> MST_Kruskal(vector<vector<int>> grap){
     int n = grap.size();
     int m = grap[0].size();
     vector<int> parent(n,-1);
-    // unordered_set<int> visited;
 
-    // to make the indivisual set;
-    // i also need a vector of vector/or set that contains the edges only, so i do not have to loop over the whole matrix again and again;
-    // i will create a unsorted set of pair that contains edges;
-    set<pair<int,int>> edges;
+
+    // updated
+    // if i take vector i have to make a search of o(n) 
+    //then sort it after all the set are made
+    //or i can take extra space, have a vector and a set;
+    // set for just search as "visited" array
+    vector<vector<int>> edges;
+    set<tuple<int,int,int>> edgesset;
     
     for(int i = 0;i<n;i++){
         for(int j=0;j<m;j++){
-            if(grap[i][j]==1){
-                // if(!visited.count(i)){
-                //     visited.insert(i);
-                //     makeSet(i);
-                // }
+            if(grap[i][j]!=-1){
+                int wt= grap[i][j];
                 if(parent[i]==-1){
                     makeSet(parent,i);
                 }
                 if(parent[j]==-1){
                     makeSet(parent,j);
                 }
-                if(edges.count({i,j})==0 && edges.count({j,i})==0){
-                    edges.insert({i,j});
+                if(edgesset.count({wt,i,j})==0 && edgesset.count({wt,j,i})==0){
+                    edgesset.insert({wt,i,j});
+                    edges.push_back({wt,i,j});
                 }
             }
         }
     }
+    //delete the extra space 
+    edgesset.clear();
+    // now will sort the vector;
+    sort(edges.begin(), edges.end()); 
 
     //for now there will be no traversing on the basis of weight;
     vector<pair<int,int>> MST;
     for(auto c: edges){
-        int a = c.first;
-        int b = c.second;
+        int w = c[0];
+        int a = c[1];
+        int b = c[2];
         if(find(parent,a)!=find(parent,b)){
             Union(parent,a,b);
-            MST.push_back(c);
+            MST.push_back({a,b});
         }
     }
     return MST;
-
-    
-
-
 
 }
 
@@ -77,7 +79,7 @@ int main(){
     // adjecentry matrix implimentation by me ; 
     int n,e;
     std::cin>>n>>e ;
-    vector<vector<int>> grap(n,vector<int>(n,0));
+    vector<vector<int>> grap(n,vector<int>(n,-1));
 
     for(int i=0;i<e;i++){
         int sn,en, wt;
@@ -102,7 +104,7 @@ int main(){
     vector<pair<int,int>> MST;
     MST= MST_Kruskal(grap);
     for(auto c: MST){
-        std::cout<< c.first << " " << c.second <<std::endl;
+        std::cout<< c.first << " " << c.second<< " : "<<grap[c.first][c.second]<<std::endl;
     }
 
 
@@ -172,21 +174,21 @@ input 3 -
 
 input for the kurskal:
 9
-13
-0 1
-0 7
-1 2
-7 8
-7 6
-7 1
-8 2
-8 6
-6 5
-5 2
-5 3
-2 3
-5 4
-3 4
+14
+0 1 4
+0 7 8
+1 2 8
+7 8 7
+7 6 1
+7 1 11
+8 2 2
+8 6 6
+6 5 2
+5 2 4
+5 3 14
+2 3 7
+5 4 10
+3 4 9
 
 input 2 - 
 7
@@ -206,85 +208,85 @@ input 2 -
 big ahh input-
 30
 80
-0 1
-0 2
-0 5
-0 10
-1 2
-1 3
-1 6
-1 11
-2 3
-2 4
-2 7
-2 12
-3 4
-3 8
-3 13
-4 9
-4 14
-5 6
-5 10
-5 15
-6 7
-6 11
-6 16
-7 8
-7 12
-7 17
-8 9
-8 13
-8 18
-9 14
-9 19
-10 11
-10 15
-10 20
-11 12
-11 16
-11 21
-12 13
-12 17
-12 22
-13 14
-13 18
-13 23
-14 19
-14 24
-15 16
-15 20
-15 25
-16 17
-16 21
-16 26
-17 18
-17 22
-17 27
-18 19
-18 23
-18 28
-19 24
-19 29
-20 21
-21 22
-22 23
-23 24
-24 29
-25 26
-26 27
-27 28
-28 29
-0 29
-2 28
-4 26
-6 24
-8 22
-10 20
-1 21
-3 23
-5 25
-7 27
-9 29
-11 29 
+0 1 12
+0 2 7
+0 5 19
+0 10 4
+1 2 15
+1 3 9
+1 6 21
+1 11 6
+2 3 14
+2 4 8
+2 7 25
+2 12 11
+3 4 18
+3 8 5
+3 13 23
+4 9 10
+4 14 16
+5 6 13
+5 10 22
+5 15 7
+6 7 17
+6 11 3
+6 16 20
+7 8 12
+7 12 24
+7 17 9
+8 9 6
+8 13 15
+8 18 27
+9 14 11
+9 19 19
+10 11 8
+10 15 26
+10 20 5
+11 12 13
+11 16 18
+11 21 7
+12 13 21
+12 17 10
+12 22 28
+13 14 14
+13 18 6
+13 23 17
+14 19 25
+14 24 9
+15 16 12
+15 20 23
+15 25 4
+16 17 16
+16 21 8
+16 26 20
+17 18 11
+17 22 29
+17 27 7
+18 19 15
+18 23 22
+18 28 5
+19 24 18
+19 29 13
+20 21 6
+21 22 24
+22 23 10
+23 24 19
+24 29 27
+25 26 8
+26 27 14
+27 28 21
+28 29 12
+0 29 30
+2 28 16
+4 26 7
+6 24 23
+8 22 11
+10 20 26
+1 21 15
+3 23 28
+5 25 9
+7 27 18
+9 29 4
+11 29 25
 
 */
