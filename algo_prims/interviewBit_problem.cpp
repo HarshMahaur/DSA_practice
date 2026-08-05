@@ -21,7 +21,7 @@ int main() {
     }
 
     Solution obj;
-    cout << obj.solve(A, B) << endl;
+    cout << obj.solve(A, B) << endl; 
 
     return 0;
 }
