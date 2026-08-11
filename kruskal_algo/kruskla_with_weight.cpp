@@ -22,6 +22,7 @@ void Union(vector<int>& parent, int i,int j){
 
 }
 
+
 vector<pair<int,int>> MST_Kruskal(vector<vector<int>> grap){
     int n = grap.size();
     int m = grap[0].size();
@@ -173,8 +174,7 @@ input 3 -
 /*
 
 input for the kurskal:
-9
-14
+9 14
 0 1 4
 0 7 8
 1 2 8

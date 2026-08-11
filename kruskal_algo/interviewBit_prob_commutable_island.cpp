@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
 public:
     void makeSet(int N, int parent[]){
-        for(int i =1;i<=N;i++){
+        for(int i =0;i<N;i++){ // we are including 0 as an vertex too...
             parent[i]=i;
 
         }
@@ -23,6 +23,9 @@ public:
         int b= find(j,parent);
         parent[a]=b;
 
+    }
+    static bool cmp(vector<int> A,vector<int> B){
+        return A[2]<B[2];
     }
     int solve(int N, vector<vector<int>> &edges) {
 /*
@@ -46,7 +49,7 @@ public:
         // mine code :
         int parent[N+1];
         // now will sort the vector;
-        sort(edges.begin(), edges.end()); 
+        sort(edges.begin(), edges.end(),cmp); 
         // make set 
         makeSet(N,parent);
         int cost{0};
@@ -79,6 +82,7 @@ int main() {
     }
 
     Solution obj;
+    std::cout<< "this the sum : " <<std::endl;
     cout << obj.solve(A, B) << endl; 
 
 
