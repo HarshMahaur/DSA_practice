@@ -18,7 +18,7 @@ int find(vector<int>& parent, int i){
 void Union(vector<int>& parent, int i,int j){
     int a= find(parent,i);
     int b= find(parent,j);
-    parent[a]=b;
+    parent[a]=b; // make the parent of i and make child of j; so all child of i become child of j.
 
 }
 

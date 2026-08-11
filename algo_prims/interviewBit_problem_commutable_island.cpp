@@ -1,10 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//
+
 class Solution {
 public:
     int solve(int A, vector<vector<int>> &B) {
-        // Your code here
+        // mine code here
+
+        vector<int> parent;
+        vector<int> visited;
+        vector<int> weight();
 
         return 0;
     }
