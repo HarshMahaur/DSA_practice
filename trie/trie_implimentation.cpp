@@ -6,7 +6,8 @@ class Node{
     bool isTerminal;
     Node* child[26];
 
-    node(){
+    Node(){
+        isTerminal= false;
         for(int i=0;i<26;i++){
             child[i]=NULL;
         }
@@ -16,7 +17,7 @@ class Node{
 void add(string w,Node* trie){
     int n= w.size();
     for(int i =0;i<n;i++){
-        if(trie->child[w[i]-'A']=NULL){
+        if(trie->child[w[i]-'A']==NULL){
             trie->child[w[i]-'A']=new Node();
         }
         trie=trie->child[w[i]-'A'];
@@ -24,6 +25,25 @@ void add(string w,Node* trie){
     trie->isTerminal=true;
 
 }
+// search code by me
+bool search(string w, Node* trie){
+    int n = w.size();
+    for(int i =0;i<n;i++){
+        if(trie->child[w[i]-'A']==NULL){
+            return false;
+        }
+        trie=trie->child[w[i]-'A'];
+    }
+    if(trie->isTerminal==true){
+        return true;
+    }
+    return false;
+}
+
+
+//search code by sir
+
+
 
 
 int main(){
@@ -36,6 +56,8 @@ int main(){
     dict.push_back("NEWS");
     dict.push_back("NO");
     dict.push_back("NOT");
+    dict.push_back("NISGT");
+
 
 
     Node* root= new Node();
@@ -45,9 +67,20 @@ int main(){
 
     }
 
+    if(search("NISG",root)){
+        std::cout<< "we found the word" <<std::endl;
+    }
+    else{
+        std::cout<< "the word does not exist" <<std::endl;
+    }
+
 
 
 
 
     return 0;
 }
+
+
+
+
