@@ -26,6 +26,22 @@ void add(string w,Node* trie){
 
 }
 // search code by me
+// bool search(string w, Node* trie){
+//     int n = w.size();
+//     for(int i =0;i<n;i++){
+//         if(trie->child[w[i]-'A']==NULL){
+//             return false;
+//         }
+//         trie=trie->child[w[i]-'A'];
+//     }
+//     if(trie->isTerminal==true){
+//         return true;
+//     }
+//     return false;
+// }
+
+
+//search code by sir
 bool search(string w, Node* trie){
     int n = w.size();
     for(int i =0;i<n;i++){
@@ -34,15 +50,8 @@ bool search(string w, Node* trie){
         }
         trie=trie->child[w[i]-'A'];
     }
-    if(trie->isTerminal==true){
-        return true;
-    }
-    return false;
+    return trie->isTerminal; // only diff in mine and sir code;
 }
-
-
-//search code by sir
-
 
 
 
